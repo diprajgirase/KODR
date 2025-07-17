@@ -1,0 +1,215 @@
+Your approach is absolutely correct and deeply practical. Here’s why:
+
+🔥 Why it works:
+Real developers never solve problems in one go. We:
+
+	•	Break problems into chunks (micro/macro).
+	•	Solve parts we know → Google the rest → Test → Iterate.
+	•	Build a mental map of how things connect (e.g., DOM + events + storage + async).
+
+Teaching your students to think this way mirrors how real developers work. It builds problem-solving muscles, not just syntax memory.
+
+⸻
+
+Now let’s dive in.
+
+⚔ JavaScript Real-World Practice Set (10 Questions)
+
+Each question comes with a problem + macro and micro steps (detailed breakdown). These are all “developer-scenario” flavored — not textbook style.
+
+⸻
+
+💡 Q1: Bookmark Manager (Mini Chrome Extension Clone)
+
+Problem:
+Build a small JS widget that lets users:
+	•	Save a website (title + URL) to bookmarks.
+	•	Show all saved bookmarks in a list.
+	•	Clicking a bookmark opens the link in a new tab.
+	•	Bookmarks should persist even after refresh.
+
+✅ Macro & Micro Steps:
+	1.	HTML structure
+	•	Input for title
+	•	Input for URL
+	•	Button to save
+	•	Empty <ul> for list
+	2.	Capture form input
+	•	Use .value from DOM
+	3.	Validate the URL
+	•	Basic check: startsWith("http")
+	4.	Create a bookmark object
+	•	{ title: "ChatGPT", url: "https://chat.openai.com" }
+	5.	Push to array of bookmarks
+	6.	Save to localStorage
+	•	Convert array to JSON and store
+	7.	Render bookmarks
+	•	Loop through bookmarks → create <li> with anchor
+	8.	Open in new tab
+	•	<a target="_blank">
+	9.	On page load, fetch from localStorage
+	•	JSON.parse() and render again
+
+⸻
+
+💡 Q2: Dynamic Filter on Product List
+
+Problem:
+You have a list of product cards. Add a real-time search bar to filter products based on name or category.
+
+✅ Steps:
+	1.	HTML:
+	•	Input for search
+	•	List of product cards (maybe from array)
+	2.	Attach event listener on input
+	•	Use "input" event
+	3.	Capture search value
+	4.	Filter array of products
+	•	product.name.includes(search) OR product.category.includes(search)
+	5.	Clear existing UI cards
+	6.	Render filtered list again
+
+⸻
+
+💡 Q3: Task Tracker with Date Filter
+
+Problem:
+Create a mini task tracker with:
+	•	Task name, due date, and status
+	•	Filter by upcoming/past/all tasks
+
+✅ Steps:
+	1.	Basic HTML inputs
+	•	Task input, date input, select for status
+	2.	Add task to array
+	3.	Compare task date with current date
+	•	Use new Date()
+	4.	Filter based on condition (past/upcoming/all)
+	5.	Render filtered task list
+	6.	Use ternary operators or multiple filters
+
+⸻
+
+💡 Q4: Image Previewer with Validation
+
+Problem:
+User uploads an image and sees a live preview. Only allow JPEG/PNG under 2MB.
+
+✅ Steps:
+	1.	HTML file input + preview div
+	2.	Add change listener on input
+	3.	Check file type
+	•	Use file.type (MIME type)
+	4.	Check file size
+	•	file.size in bytes
+	5.	Show preview using
+	•	URL.createObjectURL(file)
+	6.	Insert preview image into DOM
+
+⸻
+
+💡 Q5: Comment System with Replies
+
+Problem:
+Design a basic comment system where:
+	•	User can comment
+	•	Can reply to any comment (nested once)
+
+✅ Steps:
+	1.	Create input field for comment
+	2.	Store comment in array
+	•	Each comment has: id, text, replies[]
+	3.	Render comments
+	•	Use .map() and nested loops for replies
+	4.	Attach reply buttons under each comment
+	5.	On click, show reply input
+	6.	Push reply to the right comment object
+	7.	Re-render comments
+
+⸻
+
+💡 Q6: OTP Timer (Countdown UI)
+
+Problem:
+Show a countdown timer from 30s after user clicks “Send OTP.” Disable resend button until timer ends.
+
+✅ Steps:
+	1.	Create button and text area for countdown
+	2.	On click, disable button
+	3.	Start interval using setInterval()
+	4.	Show remaining time in DOM
+	5.	When time hits 0, clear interval and enable button
+
+⸻
+
+💡 Q7: Tabs UI with Dynamic Content
+
+Problem:
+Three buttons — About | Projects | Contact
+Clicking each shows different content.
+
+✅ Steps:
+	1.	Create 3 buttons and a content div
+	2.	Attach click listeners on buttons
+	3.	Use a switch or object map to render content
+	4.	Inject content into content area
+	5.	Style selected tab
+
+⸻
+
+💡 Q8: Expense Tracker with Monthly Filter
+
+Problem:
+Track expenses and show total spent per month.
+
+✅ Steps:
+	1.	Form for expense name + amount + date
+	2.	Push to array
+	•	Add date, month, etc.
+	3.	Store in localStorage
+	4.	Add dropdown for months
+	5.	Filter expenses by selected month
+	6.	Render matching ones
+	7.	Calculate total
+
+⸻
+
+💡 Q9: Form AutoSave (Recovery UI)
+
+Problem:
+As user types in a long form (e.g., bio), save data in localStorage every few seconds. On page refresh, restore their data.
+
+✅ Steps:
+	1.	Create form
+	2.	Use "input" event to track changes
+	3.	Debounce it (or use setTimeout)
+	4.	Save content to localStorage
+	5.	On page load, check if saved data exists
+	6.	Restore it in fields
+
+⸻
+
+💡 Q10: Sorting UI (Frontend-Only)
+
+Problem:
+Show a list of students. Clicking sort buttons should sort by:
+	•	Name A→Z
+	•	Age ↑
+	•	Marks ↓
+
+✅ Steps:
+	1.	Initial student array
+	2.	Buttons: Name, Age, Marks
+	3.	Sort using array.sort()
+	4.	Clear and re-render the table or list
+	5.	Toggle sorting direction on second click (optional)
+
+⸻
+
+If you want I can:
+	•	Bundle all of these into a worksheet format
+	•	Add visual examples
+	•	Create GitHub starter files
+Let me know, and I’ll prep that too.
+
+Would you like 10 more questions in this same structure, but harder?
