@@ -1,0 +1,4 @@
+
+function captureText() {
+    evt.preventDefault();
+}

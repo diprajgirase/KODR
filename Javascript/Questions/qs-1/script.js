@@ -1,14 +1,5 @@
     let bookmarks = [];
 
-    // On page load, load existing bookmarks
-    window.onload = function() {
-        const saved = localStorage.getItem('bookmarks');
-        if (saved) {
-            bookmarks = JSON.parse(saved);
-            renderBookmarks();
-        }
-    };
-
     function saveBookmark() {
         const title = document.getElementById('titleInput').value;
         const url = document.getElementById('urlInput').value;
