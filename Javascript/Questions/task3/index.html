@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Task Tracker</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+        }
+        .task {
+            margin: 10px 0;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Task Tracker</h1>
+
+    <div>
+        <input type="text" id="taskName" placeholder="Task Name">
+        <input type="date" id="taskDate">
+        <select id="taskStatus">
+            <option value="Pending">Pending</option>
+            <option value="Completed">Completed</option>
+        </select>
+        <button onclick="addTask()">Add Task</button>
+    </div>
+
+    <br>
+
+    <div>
+        <button onclick="filterTasks('all')">All</button>
+        <button onclick="filterTasks('upcoming')">Upcoming</button>
+        <button onclick="filterTasks('past')">Past</button>
+    </div>
+
+    <h2>Tasks</h2>
+    <div id="taskList"></div>
+
+    <script src="script.js"></script>
+
+</body>
+</html>
