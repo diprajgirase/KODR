@@ -140,6 +140,7 @@ You have 30 seconds to answer a question. Show timer, auto-submit when time ends
 Problem:
 Show 10 users initially. On scroll to bottom, fetch 10 more from API.
 
+
 ✅ Steps:
 	1.	Use an array of dummy users or fetch from https://dummyjson.com/users
 	2.	Render first 10 on page load
