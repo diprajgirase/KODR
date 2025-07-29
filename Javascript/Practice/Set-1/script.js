@@ -292,7 +292,7 @@
 //     }
 
 // }
- 
+
 
 //Qs Related to Break and Continue
 
@@ -386,3 +386,172 @@
 
 // chacha(1, 2)
 // chacha(3, 3)
+
+
+// rest and spread
+
+// function abcd(a,b,c,...val){
+// console.log(a,b,c,val)
+// }
+
+// abcd(1,2,3,4,5,6)
+
+
+//return means in fn some qs
+
+// function abcd (){
+//    return 12; 
+// }
+
+// let val = abcd();
+// console.log(val)
+
+
+
+
+// function abcd (hi){
+//     return 12 + hi
+// }
+
+// let val = abcd(23);
+// console.log(val)
+
+
+
+//first class function  /high order function
+
+
+// function abcd(val){
+//     val();
+// }
+
+// abcd(
+//     function(){
+//         console.log("hey")
+//     }
+// )
+
+
+// pure & impure functions
+
+// var a= 1;
+
+// function abc(){
+//     console.log(a);
+// }
+
+// function abd(){
+//     a++
+//     console.log(a)
+// }
+
+// abc(); 
+// abd();
+
+
+
+//iife [Immediately invoked function expression]
+
+// (function(){
+// console.log(12)
+// })()
+
+
+// Qs Based on functions
+
+// Q1. What's the difference between function declaration and expression in terms of hoisting?
+
+// abcd();
+
+
+// function abcd(){
+//     console.log("heyyy")
+// }
+
+//  Q2.convert to arrow fn
+
+// function abcd (a, b) {
+//     return a * b;
+// }
+
+// console.log(2,4)
+
+
+// let abcd = () => {
+//     return a * b;
+// }
+
+
+// Q3. how arguments and parameters this fn has
+
+// function abb(a,b,c){
+//    console.log(a,b,c)
+// }
+// abb(2,4)
+
+
+//Q4. Use rest parameter to accept any number of scores and return the total.
+
+// function getScore(...scores) {
+//     let total = 0;
+//     scores.forEach(function (val) {
+//         total = total + val;
+//     });
+
+//     return total;
+// }
+
+// console.log(getScore(20, 25, 15, 20))
+
+
+// Q5. fix this fn using early return
+
+// function checkAge(age) {
+//     if (age < 18) {
+//         console.log("Too Young");
+//     }
+//     else {
+//         console.log("Allowed");
+//     }
+// }
+
+// checkAge(22);
+
+
+// function checkAge(age) {
+//     if (age < 18) return "Too Young";
+//     return "Allowed";
+// }
+
+// console.log(checkAge(22));
+
+
+
+//Q6. pass a fn into another fn and execute it inside
+
+// function raj (val){
+//     val()
+// }
+
+// raj(
+//     function(){
+//         console.log("huihui")
+//     }
+// )
+
+// Q7. convert above Fn into pure fn
+
+// let total=0;
+
+// function totalNum(num){
+//     total += num;
+// }
+
+
+// let total= 0 ;
+
+// function totalNum(num){
+//     let totalE =total
+//     totalE += num;
+// }
+
