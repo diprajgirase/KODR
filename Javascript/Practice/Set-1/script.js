@@ -555,3 +555,37 @@
 //     totalE += num;
 // }
 
+
+
+// function outer() {
+//   let count = 0;
+//   return function () {
+//     count++;
+//     console.log(count);
+//   };
+// }
+
+// const counter = outer();
+// counter(); 
+// counter();  
+
+
+// conver normal function to IIFE
+
+// function abc(){
+//     console.log("huihui")
+// }
+
+
+// (function abc(){
+//     console.log("huihui")
+// })();
+
+
+// what will be output here and why?  
+
+// greet(); 
+
+// let greet = function() {
+//   console.log("Hi!");
+// }
