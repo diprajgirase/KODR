@@ -1,40 +1,24 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import React, { useState } from 'react'
 
-function App() {
+const App = () => {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [mobile, setMobile] = useState('');
 
-  console.log(name, email, mobile);
+  console.log(name, email, mobile)
 
   return (
-    <>
-      <form>
-        <input
-          type="text"
-          placeholder="name"
-          onChange={(e) => setName(e.target.value)}
-        />
-
-        <input
-          type="email"
-          placeholder="email"
-          onChange={(e) => setEmail(e.target.value)}
-        />
-
-        <input
-          type="number"
-          placeholder="mobile no"
-          onChange={(e) => setMobile(e.target.value)}
-        />
-
-        <input type="submit" />
+    <div>
+      <form action="">
+        <input type="text" placeholder='Name'
+          onChange={(e) => setName(e.target.value)} />
+        <input type="number" placeholder='Mob No'
+          onChange={(e) => setMobile(e.target.value)} />
+        <input type="text" placeholder='Email'
+          onChange={(e) => setEmail(e.target.value)} />
       </form>
-    </>
+    </div>
   )
 }
 
-export default App;
+export default App

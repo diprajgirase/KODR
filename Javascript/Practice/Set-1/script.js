@@ -589,3 +589,71 @@
 // let greet = function() {
 //   console.log("Hi!");
 // }
+
+
+// mutable in js but not in react
+// var arr= [1,2,3,4];
+
+// var arr2 =arr;
+
+// arr2.pop()
+
+//approach to be followed in react copy and then update
+// state = { name: "harshita" , age: "24" }
+
+// copy = {...state}
+
+// copy.age= 21; 
+
+
+
+//destructuring object
+
+// var chacha = {
+//     name: "ram", age: 24, social: {
+//         facebook: {
+//             first: "lalala",
+//             second: "huihui"
+//         }
+//     }
+// }
+
+// const {first ,second} = chacha.social.facebook;
+
+
+//destructuring array
+
+// var arr = [ 12 , function(){}]
+
+// var [shyam, john ] = arr ;
+
+
+// var arr =[ 12,function(){},50]
+
+// var [sui,,mui] = arr;
+
+
+
+//fat arrow fn implicit return
+
+// const nonu = () => ({name:"dip" ,age:"22"})
+
+// console.log(nonu())
+
+
+
+//map on array
+
+// var arr = [1,23, 43, 54]
+// const ans = arr.map(val => val*2)
+
+
+
+// var set = [21, 2, 33, 44]
+// var ans = set.map(values => values+1)
+// set =ans
+
+
+
+// var state =[ 22,11,44,2,3,4,5,23,53]
+// const ans= state.map(elem => elem>5 ? elem+4 : elem)
