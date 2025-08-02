@@ -1,64 +1,54 @@
-import { useState } from 'react';
-import './App.css';
+import React, { useState } from 'react'
 
-function App() {
+
+const App = () => {
+
   const [formData, setFormData] = useState({
     name: '',
     email: '',
-    mobile: '',
-  });
+    mobile: ''
+  })
 
-  // Optional: Just to check live updates in console
-  console.log(formData);
+  const handleSubmit = (e) => {
+    e.preventDefault();
+  }
 
-  // Handle input changes dynamically
   const handleChange = (e) => {
     const { name, value } = e.target;
 
     setFormData((prevData) => ({
       ...prevData,
-      [name]: value,
-    }));
-  };
-
-  // Handle form submit (optional)
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    console.log("Form submitted:", formData);
-    // You can also add validation or API logic here
-  };
+      [name]: value
+    }))
+  }
+      // console.log(formData)
 
   return (
-    <>
-      <form onSubmit={handleSubmit}>
-        <input
-          type="text"
-          name="name"
-          placeholder="Name"
+    <div>
+      <form action="" onSubmit={handleSubmit}>
+        <input type="text"
+          name='name'
           value={formData.name}
-          onChange={handleChange}
-        />
+          placeholder='Name'
+          onChange={handleChange} />
 
-        <input
-          type="email"
-          name="email"
-          placeholder="Email"
+        <input type="text"
+          name='email'
           value={formData.email}
-          onChange={handleChange}
-        />
+          placeholder='Email'
+          onChange={handleChange} />
 
-        <input
-          type="number"
-          name="mobile"
-          placeholder="Mobile No"
+        <input type="number"
+          name='mobile'
           value={formData.mobile}
-          onChange={handleChange}
-        />
+          placeholder='Mobile.No'
+          onChange={handleChange} />
 
         <input type="submit" />
       </form>
-    </>
-  );
+
+    </div>
+  )
 }
 
-export default App;
+export default App
