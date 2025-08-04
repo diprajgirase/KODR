@@ -1,0 +1,18 @@
+import { createContext, useState } from "react";
+
+// Create context
+export const MyStore = createContext();
+
+// Provider component
+export const MyStoreProvider = ({ children }) => {
+  const [userData, setUserData] = useState({
+    name: "Guest",
+    email: "guest@example.com"
+  });
+
+  return (
+    <MyStore.Provider value={{ userData, setUserData }}>
+      {children}
+    </MyStore.Provider>
+  );
+};
