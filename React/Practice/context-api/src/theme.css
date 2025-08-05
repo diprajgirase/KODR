@@ -1,0 +1,47 @@
+/* Simple theme variables for light and dark mode */
+[data-theme="light"] {
+  --bg-color: #f7fafc;
+  --text-color: #222;
+  --card-bg: #fff;
+  --card-border: #e2e8f0;
+}
+[data-theme="dark"] {
+  --bg-color: #18181b;
+  --text-color: #f4f4f5;
+  --card-bg: #23232a;
+  --card-border: #333;
+  --input-bg: #23232a;
+  --input-text: #f4f4f5;
+  --input-border: #444;
+}
+[data-theme="light"] {
+  --input-bg: #fff;
+  --input-text: #222;
+  --input-border: #ccc;
+}
+
+body, html, #root {
+  background: var(--bg-color);
+  color: var(--text-color);
+  min-height: 100vh;
+}
+
+input, textarea, select {
+  background: var(--input-bg);
+  color: var(--input-text);
+  border: 1px solid var(--input-border);
+  padding: 0.5em 1em;
+  border-radius: 4px;
+  outline: none;
+  transition: background 0.2s, color 0.2s, border 0.2s;
+}
+input:focus, textarea:focus, select:focus {
+  border-color: #7f9cf5;
+  box-shadow: 0 0 0 2px rgba(127,156,245,0.2);
+}
+
+.card {
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
+  color: var(--text-color);
+}
