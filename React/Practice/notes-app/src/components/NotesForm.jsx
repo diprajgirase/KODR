@@ -15,9 +15,9 @@ const NotesForm = () => {
 
    const submitHandler = (e) => {
         e.preventDefault();
-        setNotes(e),
-        title:e.title,
-        description:e.description
+        // setNotes(e),
+        // title:e.title,
+        // description:e.description
     }
 
         // setToggle(!toggle)

@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
-import Register from './components/Register'
-import Login from './components/Login'
+import AppRouter from './components/AppRouter'
+import Navbar from './components/Navbar'
 
 
 const App = () => {
@@ -8,9 +8,8 @@ const App = () => {
 
   return (
     <div className="p-5">
-      <h1>Users</h1>
-      <Register userData={userData} setUserData={setUserData} />
-      <Login />
+    <Navbar/>
+    <AppRouter/>
     </div>
   )
 }
