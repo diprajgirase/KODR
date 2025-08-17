@@ -1,9 +1,9 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 // Using inline SVGs to avoid the need for external packages like 'react-icons'.
 // This makes the code self-contained and prevents compilation errors.
 
-const HamburgerIcon = (props) => (
+export const HamburgerIcon = (props) => (
   <svg {...props} xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
     <line x1="3" y1="12" x2="21" y2="12"></line>
     <line x1="3" y1="6" x2="21" y2="6"></line>
@@ -41,13 +41,18 @@ const BellIcon = (props) => (
 );
 
 
-const Navbar = () => {
+const Navbar = ({ onToggleSidebar }) => {
   return (
     <div style={{ backgroundColor: "#0F0F0F" }} className=" text-white px-4 md:px-6 py-2 md:py-3 flex items-center justify-between shadow-lg">
       {/* Left Section */}
       <div className="flex items-center gap-2 md:gap-4">
         {/* Hamburger Icon (visible on all screens) */}
-        <button className="p-2 rounded-full hover:bg-gray-800 transition-colors">
+        <button 
+          onClick={onToggleSidebar}
+          className="p-2 rounded-full hover:bg-gray-800 transition-colors"
+          data-hamburger-button
+          aria-label="Toggle menu"
+        >
           <HamburgerIcon className="text-xl md:text-2xl cursor-pointer" />
         </button>
 

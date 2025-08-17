@@ -1,11 +1,70 @@
-import React from 'react'
-import { MdHomeFilled, MdSubscriptions } from "react-icons/md";
+import React, { useEffect, useRef, useState } from 'react';
+import { MdHomeFilled, MdSubscriptions, MdClose } from "react-icons/md";
 import { SiYoutubeshorts } from 'react-icons/si';
 import { MdHistory, MdPlaylistPlay, MdVideoLibrary, MdSchool, MdWatchLater, MdThumbUp, MdFileDownload } from "react-icons/md";
 
 const Sidebar = () => {
+  const [isOpen, setIsOpen] = useState(false);
+  const sidebarRef = useRef(null);
+
+  const onClose = () => {
+    setIsOpen(false);
+  };
+
+  const onOpen = () => {
+    setIsOpen(true);
+  };
+
+  // Close sidebar when clicking outside
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      const hamburgerButton = document.querySelector('[data-hamburger-button]');
+      
+      if (sidebarRef.current && 
+          !sidebarRef.current.contains(event.target) && 
+          !hamburgerButton?.contains(event.target) && 
+          window.innerWidth < 768) {
+        onClose();
+      }
+    };
+
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, [onClose]);
+
+  // Prevent background scrolling when sidebar is open on mobile
+  useEffect(() => {
+    if (window.innerWidth < 768) {
+      if (isOpen) {
+        document.body.style.overflow = 'hidden';
+      } else {
+        document.body.style.overflow = 'auto';
+      }
+    }
+    return () => {
+      document.body.style.overflow = 'auto';
+    };
+  }, [isOpen]);
     return (
-        <div style={{ backgroundColor: "#0F0F0F" }} className="w-60 text-white min-h-screen overflow-y-auto p-2">
+        <div 
+          ref={sidebarRef}
+          style={{ backgroundColor: "#0F0F0F" }} 
+          className={`fixed md:static z-50 w-64 text-white min-h-screen overflow-y-auto p-2 transition-transform duration-300 ease-in-out transform ${
+            isOpen ? 'translate-x-0' : '-translate-x-full md:translate-x-0'
+          }`}
+        >
+          {/* Close button for mobile */}
+          <div className="flex justify-end p-2 md:hidden">
+            <button 
+              onClick={onClose}
+              className="p-1 rounded-full hover:bg-gray-800"
+              aria-label="Close sidebar"
+            >
+              <MdClose size={24} />
+            </button>
+          </div>
             {/* Main Navigation */}
             <div className="space-y-1">
                 <div className="flex items-center gap-4 p-2 hover:bg-gray-800 rounded-lg cursor-pointer bg-gray-800">
@@ -85,7 +144,7 @@ const Sidebar = () => {
                 </div>
             </div>
         </div>
-    )
-}
+    );
+};
 
-export default Sidebar
+export default Sidebar;
