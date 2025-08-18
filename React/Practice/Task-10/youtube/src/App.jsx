@@ -15,11 +15,11 @@ const App = () => {
   };
 
   return (
-    <div className="flex flex-col h-screen overflow-hidden bg-[#0F0F0F] text-white">
+    <div className="flex flex-col h-screen bg-[#0F0F0F] text-white overflow-hidden">
       <Navbar onToggleSidebar={toggleSidebar} />
       <div className="flex flex-1 overflow-hidden">
         <Sidebar isOpen={isSidebarOpen} onClose={closeSidebar} />
-        <main className="flex-1 overflow-y-auto">
+        <main className="flex-1 overflow-y-auto [&::-webkit-scrollbar]:hidden [-ms-overflow-style:'none'] [scrollbar-width:'none']">
           <AppRouter />
         </main>
       </div>

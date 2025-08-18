@@ -1,75 +1,97 @@
-import React from 'react'
+import React from 'react';
+import VideoCard from './VideoCard';
 
 const VideoGrid = () => {
-
- const videos = [
-  {
-    id: 1,
-    thumbnail: 'https://i.imgur.com/thumbnail1.jpg',
-    duration: '6:00',
-    title: 'The Perfect Morning Routine Every Man Should Do In 2025 | Perfect morning routine',
-    channelName: 'Style With Faizy',
-    views: '962K',
-    uploaded: '7 months ago',
-    profilePic: 'https://i.imgur.com/profile1.jpg',
-  },
-  {
-    id: 2,
-    thumbnail: 'https://i.imgur.com/thumbnail2.jpg',
-    duration: '16:16',
-    title: 'How to Land Your FIRST JOB in 2025 (Step-by-Step) | GET HIRED in 90 Days',
-    channelName: 'Savinder Puri',
-    views: '6.4K',
-    uploaded: '2 days ago',
-    profilePic: 'https://i.imgur.com/profile2.jpg',
-  },
-  {
-    id: 3,
-    thumbnail: 'https://i.imgur.com/thumbnail3.jpg',
-    duration: '13:09',
-    title: 'OPEN YOUR EYES AND SEE THE REALITY *IMPORTANT*',
-    channelName: 'Neeraj Walia',
-    views: '1.4M',
-    uploaded: '1 year ago',
-    profilePic: 'https://i.imgur.com/profile3.jpg',
-  },
-  {
-    id: 4,
-    thumbnail: 'https://i.imgur.com/thumbnail4.jpg',
-    duration: '9:45',
-    title: 'Learn to be DISCIPLINE with David Goggins',
-    channelName: 'ZaidAble',
-    views: '1.3M',
-    uploaded: '1 year ago',
-    profilePic: 'https://i.imgur.com/profile4.jpg',
-  },
-  {
-    id: 5,
-    thumbnail: 'https://i.imgur.com/thumbnail5.jpg',
-    duration: '10:01',
-    title: 'Beast lekar kaha pahuch gaye || Bobby Bhaiya',
-    channelName: 'Adventure with Bobby Bhaiya',
-    views: '1.3M',
-    uploaded: '1 year ago',
-    profilePic: 'https://i.imgur.com/profile5.jpg',
-  },
-  {
-    id: 6,
-    thumbnail: 'https://i.imgur.com/thumbnail6.jpg',
-    duration: '35:11',
-    title: 'Revealed: Editing Secrets Behind Raj Shamani x Vijay Mallya Podcast',
-    channelName: 'The Creative Cult',
-    views: '1.3M',
-    uploaded: '1 year ago',
-    profilePic: 'https://i.imgur.com/profile6.jpg',
-  },
-];
+  const videos = [
+    {
+      id: 1,
+      thumbnail: 'https://i.ytimg.com/vi/dQw4w9WgXcQ/maxresdefault.jpg',
+      title: 'Never Gonna Give You Up - Rick Astley',
+      channel: 'Rick Astley',
+      views: '1.2B views',
+      timestamp: '12 years ago',
+      duration: '3:33'
+    },
+    {
+      id: 2,
+      thumbnail: 'https://i.ytimg.com/vi/dQw4w9WgXcQ/maxresdefault.jpg',
+      title: 'Learn React in 1 Hour - Full Beginner\'s Tutorial',
+      channel: 'Programming with Mosh',
+      views: '5.7M views',
+      timestamp: '2 years ago',
+      duration: '1:00:00'
+    },
+    {
+      id: 3,
+      thumbnail: 'https://i.ytimg.com/vi/PkZNo7MFNFg/maxresdefault.jpg',
+      title: 'Learn JavaScript - Full Course for Beginners',
+      channel: 'freeCodeCamp.org',
+      views: '15M views',
+      timestamp: '3 years ago',
+      duration: '3:26:43'
+    },
+    {
+      id: 4,
+      thumbnail: 'https://i.ytimg.com/vi/1Rs2ND1ryYc/maxresdefault.jpg',
+      title: 'Learn CSS Position In 9 Minutes',
+      channel: 'Web Dev Simplified',
+      views: '1.8M views',
+      timestamp: '2 years ago',
+      duration: '9:26'
+    },
+    {
+      id: 5,
+      thumbnail: 'https://i.ytimg.com/vi/PkZNo7MFNFg/maxresdefault.jpg',
+      title: 'Build a Netflix Clone with React',
+      channel: 'Clever Programmer',
+      views: '4.2M views',
+      timestamp: '1 year ago',
+      duration: '2:30:00'
+    },
+    {
+      id: 6,
+      thumbnail: 'https://i.ytimg.com/vi/1Gq0mFhqN8M/maxresdefault.jpg',
+      title: 'Learn Flexbox in 20 Minutes',
+      channel: 'Web Dev Simplified',
+      views: '1.1M views',
+      timestamp: '1 year ago',
+      duration: '19:31'
+    },
+    {
+      id: 7,
+      thumbnail: 'https://i.ytimg.com/vi/1Rs2ND1ryYc/maxresdefault.jpg',
+      title: 'Learn CSS Grid in 20 Minutes',
+      channel: 'Web Dev Simplified',
+      views: '2.3M views',
+      timestamp: '2 years ago',
+      duration: '19:20'
+    },
+    {
+      id: 8,
+      thumbnail: 'https://i.ytimg.com/vi/dQw4w9WgXcQ/maxresdefault.jpg',
+      title: 'Build A Weather App With Vanilla JavaScript',
+      channel: 'Traversy Media',
+      views: '1.5M views',
+      timestamp: '3 years ago',
+      duration: '33:20'
+    }
+  ];
 
   return (
-    <div>
-      
+    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 p-4 pb-16 overflow-hidden">
+      {videos.map((video) => (
+        <VideoCard
+          key={video.id}
+          title={video.title}
+          channel={video.channel}
+          views={video.views}
+          timestamp={video.timestamp}
+          thumbnail={video.thumbnail}
+          duration={video.duration}
+        />
+      ))}
     </div>
-  )
-}
+  );
+};
 
-export default VideoGrid
+export default VideoGrid;
