@@ -1,0 +1,21 @@
+{
+  "name": "authentication",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "express": "^5.1.0",
+    "json": "^11.0.0",
+    "mongoose": "^8.18.0",
+    "token": "^0.1.0",
+    "tokens": "^0.0.8",
+    "web": "^0.0.2"
+  }
+}
