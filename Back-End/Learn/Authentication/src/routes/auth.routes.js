@@ -29,8 +29,19 @@ router.post('/register', async (req, res) => {
 
     const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET)
 
-    res.status(201).json({ message: "User registered successfully", token: token })
+    res.status(201).json({
+        message: "User registered successfully", token: token, user: {
+            id: user._id,
+            username: user.username,
+            email: user.email,
+            fullName: user.fullName}
+        })
 
 });
 
-module.exports = router;
+
+router.get('/register', async (req, res) => {
+    res.send("Heyyy")
+})
+
+module.exports = router;   
