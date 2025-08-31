@@ -31,12 +31,6 @@ app.get('/posts', async (req,res) =>{
     })
 })
 
-app.get('/posts', async (req,res) =>{
-    const posts = await postModel.find()
-    res.json({
-        message: "posts fetched successfully",
-        posts: posts
-    })
-})
+
 
 module.exports = app
