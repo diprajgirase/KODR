@@ -1,23 +1,21 @@
-const ImageKit = require("imagekit");
-const utils = require("../utils/utils")
+var ImageKit = require("imagekit");
+const { generateUUID } = require("../utils/utils");
 
-const imagekit = new ImageKit({
-    publicKey: process.env.IMAGEKIT_PUBLIC_KEY,
-    privateKey: process.env.IMAGEKIT_PRIVATE_KEY,
-    urlEndpoint: process.env.IMAGEKIT_URL_ENDPOINT
+var imagekit = new ImageKit({
+   publicKey: "public_xu86Gl0yE/tZd5MfY2q9bMDmkaw=",
+   privateKey: "private_Je3krnVosVorIWnjYxL2BfGbkLw=",
+   urlEndpoint: "https://ik.imagekit.io/jo2meypr4"
 });
 
 
 async function uploadFile(file) {
+   const result = await imagekit.upload({
+      file: file,
+      fileName: generateUUID() ,
+      folder: "products"
+   })
 
-    const result = await imagekit.upload({
-        file: file,
-        fileName: utils.createId(),
-        folder: "kodr_phase_1"
-    })
-
-    return result;
+   return result
 }
 
-
-module.exports = { uploadFile }
+module.exports = uploadFile;

@@ -1,192 +1,104 @@
 const userModel = require("../models/user.model")
-const bcrypt = require("bcryptjs")
+const mongoose = require("mongoose")
+const express = require("express")
 const jwt = require("jsonwebtoken")
+const bcrypt = require("bcryptjs")
 
-async function createUser({
-    username, email, fullName: { firstName, lastName }, password, role = "user"
-}) {
-
-    const isUserAlreadyExists = await userModel.findOne({
-        $or: [
-            { username }, { email }
-        ]
-    })
-
-    if (isUserAlreadyExists) {
-        throw new Error("user already exists")
-    }
-
-
-    const hash = await bcrypt.hash(password, 10)
-
-
-    const user = await userModel.create({
-        username,
-        email,
-        fullName: {
-            firstName,
-            lastName
-        },
-        password: hash,
-        role: role
-    })
-
-    const token = jwt.sign({
-        id: user._id,
-    }, process.env.JWT_SECRET)
-
-    return { user, token }
-
+const generateToken = (userId) => {
+   return jwt.sign({ id: userId }, process.env.JWT_SECRET)
 }
 
+
+const router = express.Router();
 async function registerUser(req, res) {
 
-    const { email, fullName: { firstName, lastName }, username, password } = req.body
-    try {
+   const { username, fullName: { firstName, lastName }, email, password, role } = req.body
 
-        const { user, token } = await createUser({
-            email,
-            fullName: {
-                firstName,
-                lastName
-            },
-            username,
-            password
-        })
+   const user = await userModel.findOne({
+      $or: [
+         { email: email },
+         { username: username }
+      ]
+   })
 
-        res.cookie('token', token)
-        res.status(201).json({
-            message: "user registered successfully",
-            user: {
-                username: user.username,
-                fullName: user.fullName,
-                _id: user._id,
-                email: user.email,
-                role: user.role
-            }
-        })
+   if (user) {
+      return res.status(401).json({
+         message: "User not found"
+      })
+   }
 
-    } catch (err) {
-        res.status(400).json({
-            message: err.message
-        })
-    }
+   const hashPassword = await bcrypt.hash(password, 10)
+
+   const newUser = await userModel.create({
+      username: username,
+      fullName: {
+         firstName: firstName,
+         lastName: lastName
+      },
+      email: email,
+      password: hashPassword,
+      role: role
+   })
+
+   const token = generateToken(newUser)
+
+   res.cookie("token", token)
+
+   return res.status(200).json({
+      message: "User created successfully",
+      user: {
+         username: username,
+         fullName: {
+            firstName: firstName,
+            lastName: lastName
+         },
+         email: email,
+         token: token,
+      }
+   })
 
 }
 
 async function loginUser(req, res) {
 
-    const { email, username, password } = req.body
+   const { username, email, password } = req.body
 
-    const user = await userModel.findOne({
-        $or: [
-            { username }, { email }
-        ]
-    }).select("+password")
+   const user = await userModel.findOne({
+      $or: [
+         { email: email },
+         { username: username }
+      ]
+   }).select("+password")
 
-    if (!user) {
-        return res.status(400).json({
-            message: "invalid username or email`"
-        })
-    }
+   if (!user) {
+      return res.status(401).json({
+         message: "User not found"
+      })
+   }
 
-    const isPasswordValid = await bcrypt.compare(password, user.password)
+   const isMatch = await bcrypt.compare(password, user.password)
 
-    if (!isPasswordValid) {
-        return res.status(400).json({
-            message: "invalid password"
-        })
-    }
+   if (!isMatch) {
+      return res.status(400).json({
+         message: "Invalid password"
+      })
+   }
 
-    const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET)
+   const token = generateToken(user._id)
+   console.log(token);
 
-    res.cookie('token', token, {
-        httpOnly: true,
-        secure: false,
-        sameSite: 'lax',
-    });
+   res.cookie("token", token)
 
+   res.status(200).json({
+      message: "User Login Successfully",
+      user,
+      token
+   })
 
-    res.status(200).json({
-        message: "user logged in successfully",
-        user: {
-            id: user._id,
-            username: user.username,
-            email: user.email,
-            fullName: user.fullName,
-            role: user.role
-        }
-    })
-
-}
-
-async function registerSeller(req, res) {
-
-    const { username, email, fullName: { firstName, lastName }, password } = req.body
-
-    try {
-
-        const { user: seller, token } = await createUser({
-            username,
-            email,
-            fullName: {
-                firstName,
-                lastName
-            },
-            password,
-            role: "seller"
-        })
-
-        res.cookie('token', token, {
-            httpOnly: true,
-            secure: false,
-            sameSite: 'lax',
-        });
-
-        res.status(201).json({
-            message: "seller registered successfully",
-            user: {
-                username: seller.username,
-                fullName: seller.fullName,
-                _id: seller._id,
-                email: seller.email,
-                role: seller.role
-            }
-        })
-    } catch (err) {
-        res.status(400).json({
-            message: err.message
-        })
-    }
-
-}
-
-function getCurrentUser(req, res) {
-    const u = req.user;
-    if (!u) return res.status(401).json({ message: 'Unauthorized' });
-    res.status(200).json({
-        message: 'current user fetched successfully',
-        user: {
-            id: u._id,
-            username: u.username,
-            email: u.email,
-            fullName: u.fullName,
-            role: u.role
-        }
-    });
-}
-
-function logout(req, res) {
-    res.cookie('token', '', { maxAge: 0 });
-    res.status(200).json({ message: 'logged out' });
 }
 
 
 module.exports = {
-    registerUser,
-    loginUser,
-    registerSeller,
-    getCurrentUser,
-    logout
+   registerUser,
+   loginUser
 }
-

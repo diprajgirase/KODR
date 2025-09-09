@@ -1,39 +1,34 @@
-const userModel = require("../models/user.model");
-const jwt = require("jsonwebtoken");
+const userModel = require("../models/user.model")
+const jwt = require("jsonwebtoken")
 
 const authSeller = async (req, res, next) => {
-    const token = req.cookies.token || req.headers.authorization?.split(" ")[1];
-    if (!token) return res.status(401).json({ message: 'Unauthorized' });
+   const token = req.cookies.token;
 
-    try {
-        const decoded = jwt.verify(token, process.env.JWT_SECRET);
-        const user = await userModel.findById(decoded.id);
+   if (!token) {
+      return res.status(401).json({ message: 'Unauthorized' });
+   }
 
-        if (!user) return res.status(401).json({ message: 'Unauthorized' });
-        if (user.role !== 'seller') return res.status(403).json({ message: 'Forbidden' });
+   try {
 
-        req.seller = user;
-        next();
-    } catch (err) {
-        return res.status(401).json({ message: 'Unauthorized' });
-    }
-};
+      const decoded = jwt.verify(token, process.env.JWT_SECRET);
 
-const authUser = async (req, res, next) => {
-    const token = req.cookies.token || req.headers.authorization?.split(" ")[1];
-    if (!token) return res.status(401).json({ message: 'Unauthorized' });
+      const user = await userModel.findOne({
+         _id: decoded.id
+      })
 
-    try {
-        const decoded = jwt.verify(token, process.env.JWT_SECRET);
-        const user = await userModel.findById(decoded.id);
+      if (user.role !== 'seller') {
+         return res.status(403).json({ message: 'Forbidden' });
+      }
 
-        if (!user) return res.status(401).json({ message: 'Unauthorized' });
+      req.seller = user;
 
-        req.user = user;
-        next();
-    } catch (err) {
-        return res.status(401).json({ message: 'Unauthorized' });
-    }
-};
+      next();
 
-module.exports = { authSeller, authUser };
+   } catch (err) {
+      return res.status(401).json({ message: 'Unauthorized' });
+   }
+
+}
+
+
+module.exports = { authSeller }

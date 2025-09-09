@@ -1,10 +1,7 @@
-const { v4: uuid4 } = require("uuid")
+const {v4: uuid4} = require('uuid');
 
-
-
-function createId() {
-    return uuid4();
+function  generateUUID() {
+   return uuid4()
 }
 
-
-module.exports = { createId }
+module.exports = {generateUUID}
