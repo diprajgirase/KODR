@@ -22,8 +22,8 @@ I commit daily to build consistency, improve step-by-step, and document my journ
 
 ---
 
-## 😉📸
-![Kodr 2.0](https://ik.imagekit.io/sheryians/courses_gif/undefined-IMG_5100_G2afyBQKH_cxXNZS5wFL.JPG)
+<!--## 😉📸
+![Kodr 2.0](https://ik.imagekit.io/sheryians/courses_gif/undefined-IMG_5100_G2afyBQKH_cxXNZS5wFL.JPG) -->
 
 ---
 
