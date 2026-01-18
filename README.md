@@ -1,4 +1,4 @@
-# 🚀 Kodr 2.0 - Learning & Practices
+# 🚀 Kodr - Learning & Practices
 
 ### 🔥 What you'll find here:
 - Daily coding exercises
