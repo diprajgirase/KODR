@@ -1,7 +1,16 @@
-let container= document.querySelector(".container")
+var username = "johnny";
+let age = 24;
+const isLoggedIn = false;
+let accountBalance = 50000;
+subscriptionType ="free";
+lastLoginDaysAgo = 10
 
-let heading2 = document.createElement('h2');
+function checkUser(){
+    if(18>age){
+        accountBalance >= 500
+    }
+}
 
-heading2.innerHTML = "this my new heading";
 
-container[0].appendChild(heading2);
+
+

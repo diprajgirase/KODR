@@ -1,14 +1,15 @@
-import Student from './Student'
-import './App.css'
+import Greet from "./Greet"
+import "./App.css";
 
 function App() {
-
   return (
     <>
-    
-    <Student name= "rohan" age={27} />
+      <Greet namee="jessica" />
+      <Greet namee="raju" />
+      <Greet namee="sonu" />
+      <Greet namee="ramu" />
     </>
-  )
+  );
 }
 
 export default App;
